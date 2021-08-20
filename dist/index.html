@@ -2,9 +2,34 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Getting Started</title>
+    <title>I am the elevator</title>
   </head>
   <body>
-    <script src="main.js"></script>
+    <div>
+      <h1>I am the elevator</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Lift</th>
+            <th>Customer</th>
+          </tr>
+        </thead>
+        <tbody class="building">
+          <tr>
+            <td data-lift-floor="3"></td>
+            <td data-customer-floor="3"><div data-customer="1">🙋‍♂️</div></td>
+          </tr>
+          <tr>
+            <td data-lift-floor="2"></td>
+            <td data-customer-floor="2"></td>
+          </tr>
+          <tr>
+            <td data-lift-floor="1"><div id="lift">[ ]</div></td>
+            <td data-customer-floor="1"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="bundle.js"></script>
   </body>
 </html>
