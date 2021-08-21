@@ -17,7 +17,9 @@
         <tbody class="building">
           <tr>
             <td data-lift-floor="3"></td>
-            <td data-customer-floor="3"><div data-customer="1">🙋‍♂️</div></td>
+            <td data-customer-floor="3">
+              <div data-customer data-requested-floor="1">(🙋‍♂️: 1)</div>
+            </td>
           </tr>
           <tr>
             <td data-lift-floor="2"></td>
@@ -29,6 +31,11 @@
           </tr>
         </tbody>
       </table>
+      <br />
+      <button type="button" id="up">UP 👆</button>
+      <button type="button" id="down">DOWN 👇</button>
+      <br />
+      <button type="button" id="doors">DOORS 🚪🚪</button>
     </div>
     <script src="bundle.js"></script>
   </body>

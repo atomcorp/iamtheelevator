@@ -1,12 +1,24 @@
 import "./style.css";
 
-function component() {
-  const element = document.createElement("div");
+import Lift from "./modules/Lift";
 
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = "Hello world";
+function main() {
+  const liftEl = document.getElementById("lift");
 
-  return element;
+  const newLift = new Lift(1, 3, liftEl);
+
+  document.addEventListener("click", (e) => {
+    const element = e.target as HTMLElement;
+    if (element.id === "up") {
+      newLift.moveUp();
+    }
+    if (element.id === "down") {
+      newLift.moveDown();
+    }
+    if (element.id === "doors") {
+      newLift.openDoors();
+    }
+  });
 }
 
-document.body.appendChild(component());
+main();
