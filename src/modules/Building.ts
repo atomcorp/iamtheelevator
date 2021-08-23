@@ -24,6 +24,10 @@ class Building {
       requestedFloor,
     };
   }
+  removePassengerFromFloor(floor: number, passengerDomEl: HTMLElement): void {
+    const floorEl = document.querySelector(`[data-customer-floor="${floor}"]`);
+    floorEl.removeChild(passengerDomEl);
+  }
 }
 
 export default Building;
