@@ -2,18 +2,43 @@ import Building from "./Building";
 
 import Passenger from "./Passenger";
 
+import { SequenceStepType } from "../types";
 class Lift extends Building {
   #floor: number;
   #domEl: HTMLElement;
   #passengers: Passenger[];
-  #points: number;
+  #points = 0;
+  #turn = 1;
+  #totalTurns: number;
+  #sequence: SequenceStepType[];
 
-  constructor(startingFloor: number, numberOfFloors: number, el: HTMLElement) {
-    super(numberOfFloors);
-    this.#floor = startingFloor;
-    this.#domEl = el;
+  constructor(options: {
+    startingFloor: number;
+    numberOfFloors: number;
+    el: HTMLElement;
+    sequence: SequenceStepType[];
+  }) {
+    super(options.numberOfFloors);
+    this.#floor = options.startingFloor;
+    this.#domEl = options.el;
     this.#passengers = [];
-    this.#points = 0;
+    this.#sequence = options.sequence;
+    this.#renderMove();
+  }
+
+  #renderMove(): void {
+    const step = this.#sequence.find(
+      (sequenceStep) => this.#turn === sequenceStep.turn
+    );
+    if (step) {
+      console.log(step);
+      step.passengers.forEach((passenger) => {
+        this.renderWaitingPassenger(
+          passenger.startingFloor,
+          passenger.requestedFloor
+        );
+      });
+    }
   }
 
   #renderMoveLift(nextFloor: number): void {
@@ -30,6 +55,8 @@ class Lift extends Building {
       this.#floor = nextFloor;
       this.#renderMoveLift(nextFloor);
     }
+    this.#turn = this.#turn + 1;
+    this.#renderMove();
   }
 
   moveDown(): void {
@@ -38,6 +65,8 @@ class Lift extends Building {
       this.#floor = nextFloor;
       this.#renderMoveLift(nextFloor);
     }
+    this.#turn = this.#turn + 1;
+    this.#renderMove();
   }
 
   openDoors(): void {

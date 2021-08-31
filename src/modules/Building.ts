@@ -28,6 +28,15 @@ class Building {
     const floorEl = document.querySelector(`[data-customer-floor="${floor}"]`);
     floorEl.removeChild(passengerDomEl);
   }
+  renderWaitingPassenger(floor: number, requestedFloor: number): void {
+    const floorEl = this.returnCustomerFloorEl(floor);
+    const rootDomEl = document.createElement("span");
+    rootDomEl.dataset.customer = "true";
+    rootDomEl.dataset.requestedFloor = requestedFloor.toString();
+    rootDomEl.dataset.direction = requestedFloor > floor ? "up" : "down";
+    rootDomEl.innerText = `(🙋‍♂️: ${requestedFloor}) `;
+    floorEl.appendChild(rootDomEl);
+  }
 }
 
 export default Building;
